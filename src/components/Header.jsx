@@ -121,7 +121,7 @@ const Header = () => {
             </div>
 
             {/* location and icons here */}
-            <div className="flex items-center gap-3 xl:gap-4 2xl:gap-5">
+            <div className="flex items-center gap-x-6 lg:gap-x-4 2xl:gap-x-5">
               <div className="hidden lg:flex items-center gap-2 xl:mr-3 h-10 px-[8px] xl:px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-xs xl:text-sm border border-[#ECECEC] hover:shadow-3xl">
                 <IoLocationOutline />
                 <span className="text-greeny">Your Location</span>
@@ -129,7 +129,7 @@ const Header = () => {
               </div>
               <div className="hidden lg:flex gap-x-2 cursor-pointer">
                 <div className="relative">
-                  <img src={Compare} alt="Compare icon" className="w-[20px] h-[20px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Compare} alt="Compare icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     3
                   </span>
@@ -138,7 +138,7 @@ const Header = () => {
               </div>
               <div className="flex gap-x-2 cursor-pointer">
                 <div className="relative">
-                  <img src={Wishlist} alt="Wishlist icon" className="w-[20px] h-[20px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Wishlist} alt="Wishlist icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     6
                   </span>
@@ -147,7 +147,7 @@ const Header = () => {
               </div>
               <div className="flex gap-x-2 cursor-pointer">
                 <div className="relative">
-                  <img src={Cart} alt="Cart icon" className="w-[20px] h-[20px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Cart} alt="Cart icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     1
                   </span>
@@ -155,7 +155,7 @@ const Header = () => {
                 <span className="hidden lg:block self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Cart</span>
               </div>
               <div className="hidden lg:flex gap-x-2 cursor-pointer">
-                <img src={Account} alt="Account icon" className="w-[20px] h-[20px] 2xl:w-[25px] 2xl:h-[25px]" />
+                <img src={Account} alt="Account icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                 <span className="self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Account</span>
               </div>
             </div>
