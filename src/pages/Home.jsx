@@ -15,7 +15,7 @@ const Home = () => {
       <PopularProducts />
       <DealsOfTheDay />
       <ShopByCategories />
-      <div className="flex gap-5">
+      <div className="flex gap-5 flex-wrap">
         <TopSelling />
         <TrendingProducts />
         <RecentlyAdded />

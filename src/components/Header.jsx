@@ -11,6 +11,7 @@ import Arrow from '/down-arrow.svg'
 import Support from '/support.svg'
 import { Link, NavLink } from "react-router"
 
+
 const Header = () => {
   const navList = [
     {
@@ -63,23 +64,23 @@ const Header = () => {
   return (
     <>
       {/* Top Header  */}
-      <div id="topSection" className="border-b border-[#ECECEC] font-lato">
+      <div id="topSection" className="hidden lg:block border-b border-[#ECECEC] font-lato">
         <div className="max-w-[1610px] mx-auto">
-          <div className="h-[37px] flex justify-between items-center text-[#7E7E7E] text-[13px] leading-[13px]">
-            <ul className="flex gap-5 font-medium">
-              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-10px]">About Us</li>
-              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-10px]">My Account</li>
-              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-10px]">Wishlist</li>
+          <div className="h-[37px] flex justify-between items-center text-[#7E7E7E] text-[13px] leading-[13px] lg:px-12 xl:px-16 2xl:px-20">
+            <ul className="flex gap-3 xl:gap-5 font-medium">
+              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">About Us</li>
+              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">My Account</li>
+              <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">Wishlist</li>
               <li>Order Tracking</li>
             </ul>
-            <p className="text-sm leading-3.5 text-center">
+            <p className="text-xs xl:text-sm leading-4 text-center">
               100% Secure delivery without contacting the courier <br /> Supper Value Deals - Save more with coupons
             </p>
-            <div className="flex gap-[20px]">
-              <p className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-10px]">
+            <div className="flex gap-3 xl:gap-5">
+              <p className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">
                 Need help? Call Us: <span className="font-semibold text-[#3BB77E]">+ 1800 900</span>
               </p>
-              <div className="flex items-center gap-[2px] relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-10px]">
+              <div className="flex items-center gap-[2px] relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">
                 <span className="font-medium">English</span>
                 <IoIosArrowDown />
               </div>
@@ -94,16 +95,21 @@ const Header = () => {
 
       {/* Logo with Search */}
       <div id="middleSection">
-        <div className="max-w-[1610px] mx-auto">
-          <div className="flex justify-between py-9">
+        <div className="max-w-[1610px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+          <div className="flex justify-between items-center lg:h-[96px] h-[70px]">
+
+            {/* Mobile Menu  */}
+            <div className="w-[44px] text-3xl lg:hidden">
+              &equiv;
+            </div>
 
             {/* Logo here  */}
-            <div className="w-[180px]">
+            <div className="w-[150px] lg:w-[180px]">
               <img src={Logo} alt="Logo" className="w-full" />
             </div>
 
             {/* searchbar here  */}
-            <div className="flex items-center rounded-sm border-2 border-[#BCE3C9] h-[54px] text-sm">
+            <div className="hidden lg:flex items-center rounded-sm border-2 border-[#BCE3C9] h-[54px] text-sm">
               <div className="flex items-center gap-2 px-5 relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-0 font-bold text-[#253D4E]">
                 <span>All Categories</span>
                 <IoIosArrowDown className="text-[#7E7E7E]" />
@@ -116,12 +122,12 @@ const Header = () => {
 
             {/* location and icons here */}
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-2 mr-3 h-10 px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-sm border border-[#ECECEC] hover:shadow-3xl">
+              <div className="hidden lg:flex items-center gap-2 mr-3 h-10 px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-sm border border-[#ECECEC] hover:shadow-3xl">
                 <IoLocationOutline />
                 <span className="text-greeny leading-[35px]">Your Location</span>
                 <IoIosArrowDown />
               </div>
-              <div className="flex gap-x-2 cursor-pointer">
+              <div className="hidden lg:flex gap-x-2 cursor-pointer">
                 <div className="relative">
                   <img src={Compare} alt="Compare icon" className="w-[25px] h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-5 w-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-xs">
@@ -137,7 +143,7 @@ const Header = () => {
                     6
                   </span>
                 </div>
-                <span className="self-end font-lato text-[#7E7E7E]">Wishlist</span>
+                <span className="hidden lg:block self-end font-lato text-[#7E7E7E]">Wishlist</span>
               </div>
               <div className="flex gap-x-2 cursor-pointer">
                 <div className="relative">
@@ -146,9 +152,9 @@ const Header = () => {
                     1
                   </span>
                 </div>
-                <span className="self-end font-lato text-[#7E7E7E]">Cart</span>
+                <span className="hidden lg:block self-end font-lato text-[#7E7E7E]">Cart</span>
               </div>
-              <div className="flex gap-x-2 cursor-pointer">
+              <div className="hidden lg:flex gap-x-2 cursor-pointer">
                 <img src={Account} alt="Account icon" className="w-[25px] h-[25px]" />
                 <span className="self-end font-lato text-[#7E7E7E]">Account</span>
               </div>
@@ -158,9 +164,9 @@ const Header = () => {
       </div>
 
       {/* Category with Menu Section  */}
-      <div id="header-bottom" className="border-y border-[#ECECEC]">
+      <div id="header-bottom" className="hidden lg:block border-y border-[#ECECEC]">
         <div className="max-w-[1610px] mx-auto">
-          <div className="h-[73px] py-[15px] flex items-center justify-between gap-[35px]">
+          <div className="h-[73px] py-[15px] flex items-center justify-between gap-[35px] lg:px-12 xl:px-16 2xl:px-20">
             <div className="flex items-center gap-x-[35px]">
               <div className="flex gap-x-2 py-3 px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer">
                 <img src={Browse} alt="Browse icon" className="w-4" />
@@ -180,8 +186,8 @@ const Header = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex items-center gap-x-3">
-              <img src={Support} alt="" className="w-9"/>
+            <div className="hidden xl:flex items-center gap-x-3">
+              <img src={Support} alt="" className="w-9" />
               <div className="flex flex-col">
                 <span className="text-greeny font-bold text-[26px]">1900 - 888</span>
                 <span className="text-[#7E7E7E] font-medium text-xs font-lato">24/7 Support Center</span>
@@ -190,11 +196,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-
-
-
-
     </>
   )
 }
