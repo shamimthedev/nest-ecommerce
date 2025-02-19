@@ -10,6 +10,7 @@ import Deals from '/deals.svg'
 import Arrow from '/down-arrow.svg'
 import Support from '/support.svg'
 import { Link, NavLink } from "react-router"
+import SelectDrop from "./SelectDrop"
 
 
 const Header = () => {
@@ -96,7 +97,7 @@ const Header = () => {
       {/* Logo with Search */}
       <div id="middleSection">
         <div className="max-w-[1610px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-          <div className="flex justify-between items-center lg:h-[96px] h-[70px]">
+          <div className="flex justify-between items-center gap-x-5 2xl:gap-x-11 lg:h-[96px] h-[70px]">
 
             {/* Mobile Menu  */}
             <div className="w-[44px] text-3xl lg:hidden">
@@ -108,55 +109,59 @@ const Header = () => {
               <img src={Logo} alt="Logo" className="w-full" />
             </div>
 
-            {/* searchbar here  */}
-            <div className="hidden lg:flex items-center rounded-sm border-2 border-[#BCE3C9] h-[44px] xl:h-[48px] 2xl:h-[54px] text-sm">
-              <div className="flex items-center gap-2 px-2 2xl:px-5 relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-0 font-bold text-[#253D4E] text-xs xl:text-sm 2xl:text-base">
-                <span>All Categories</span>
-                <IoIosArrowDown className="text-[#7E7E7E]" />
-              </div>
-              <div className="flex items-center justify-between px-2 2xl:px-5 w-[18vw] 2xl:w-[25vw] font-lato text-[#838383] text-xs xl:text-sm 2xl:text-base">
-                <input className="outline-none border-none w-full h-full" type="text" placeholder="Search for items..." />
-                <IoSearchOutline className="text-lg xl:text-xl" />
+            {/* Search Bar */}
+            <div className="hidden lg:flex flex-1 max-w-[700px] items-center rounded-sm border-2 border-[#BCE3C9] h-[44px] xl:h-[48px] 2xl:h-[54px]">
+              {/* Category Dropdown */}
+                <SelectDrop/>
+
+              {/* Search Input */}
+              <div className="flex-grow flex items-center px-3 xl:px-5 relative">
+                <input
+                  className="w-full h-full outline-none border-none text-[#838383] text-xs xl:text-sm 2xl:text-base placeholder-gray-400"
+                  type="text"
+                  placeholder="Search for items..."
+                />
+                <IoSearchOutline className="text-lg xl:text-xl text-gray-500 cursor-pointer absolute right-3" />
               </div>
             </div>
 
             {/* location and icons here */}
             <div className="flex items-center gap-x-6 lg:gap-x-4 2xl:gap-x-5">
-              <div className="hidden lg:flex items-center gap-2 xl:mr-3 h-10 px-[8px] xl:px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-xs xl:text-sm border border-[#ECECEC] hover:shadow-3xl">
+              <div className="hidden lg:flex items-center gap-2 xl:mr-3 h-10 px-[8px] xl:px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-xs xl:text-sm border border-[#ECECEC] shadow-sm hover:shadow-md">
                 <IoLocationOutline />
                 <span className="text-greeny">Your Location</span>
                 <IoIosArrowDown />
               </div>
-              <div className="hidden lg:flex gap-x-2 cursor-pointer">
+              <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
                   <img src={Compare} alt="Compare icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     3
                   </span>
                 </div>
-                <span className="self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Compare</span>
+                <span className="font-lato text-[#7E7E7E] text-sm xl:text-base">Compare</span>
               </div>
-              <div className="flex gap-x-2 cursor-pointer">
+              <div className="flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
                   <img src={Wishlist} alt="Wishlist icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     6
                   </span>
                 </div>
-                <span className="hidden lg:block self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Wishlist</span>
+                <span className="hidden lg:block font-lato text-[#7E7E7E] text-sm xl:text-base">Wishlist</span>
               </div>
-              <div className="flex gap-x-2 cursor-pointer">
+              <div className="flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
                   <img src={Cart} alt="Cart icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-8px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     1
                   </span>
                 </div>
-                <span className="hidden lg:block self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Cart</span>
+                <span className="hidden lg:block font-lato text-[#7E7E7E] text-sm xl:text-base">Cart</span>
               </div>
-              <div className="hidden lg:flex gap-x-2 cursor-pointer">
+              <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer">
                 <img src={Account} alt="Account icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
-                <span className="self-end font-lato text-[#7E7E7E] text-sm xl:text-base">Account</span>
+                <span className="font-lato text-[#7E7E7E] text-sm xl:text-base">Account</span>
               </div>
             </div>
           </div>
