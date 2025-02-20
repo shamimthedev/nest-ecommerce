@@ -12,6 +12,18 @@ import Support from '/support.svg'
 import { Link, NavLink } from "react-router"
 import SelectDrop from "./SelectDrop"
 
+const categories = ["All Categories",
+  "Milks and Dairies",
+  "Wines & Alcohol",
+  "Clothing & Beauty",
+  "Pet Foods & Toy",
+  "Fast food",
+  "Baking material",
+  "Vegetables",
+  "Fresh Seafood",
+  "Noodles & Rice",
+  "Ice cream",];
+const countries = ["Bangladesh", "India", "USA", "UK", "Canada", "Australia", 'China', 'PK', "UK"];
 
 const Header = () => {
   const navList = [
@@ -62,6 +74,15 @@ const Header = () => {
       url: '/contact'
     },
   ]
+
+  const handleCategorySelect = (category) => {
+    console.log("Selected Category:", category);
+  };
+
+  const handleLocationSelect = (location) => {
+    console.log("Selected Location:", location);
+  };
+
   return (
     <>
       {/* Top Header  */}
@@ -110,18 +131,19 @@ const Header = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="hidden lg:flex flex-1 max-w-[700px] items-center rounded-sm border-2 border-[#BCE3C9] h-[44px] xl:h-[48px] 2xl:h-[54px]">
+            <div className="hidden lg:flex flex-1 max-w-[700px] items-center rounded-sm border-2 border-[#BCE3C9] h-[44px] xl:h-[48px]">
               {/* Category Dropdown */}
-                <SelectDrop/>
+              <div className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[80%] after:right-0 after:top-1/2 after:-translate-y-1/2">
+                <SelectDrop data={categories} placeholder="All Categories" onSelect={handleCategorySelect} />
+              </div>
 
               {/* Search Input */}
               <div className="flex-grow flex items-center px-3 xl:px-5 relative">
                 <input
-                  className="w-full h-full outline-none border-none text-[#838383] text-xs xl:text-sm 2xl:text-base placeholder-gray-400"
+                  className="w-full h-full outline-none border-none text-[#838383] text-xs xl:text-sm placeholder-gray-400"
                   type="text"
                   placeholder="Search for items..."
                 />
-                <IoSearchOutline className="text-lg xl:text-xl text-gray-500 cursor-pointer absolute right-3" />
               </div>
             </div>
 
@@ -129,8 +151,9 @@ const Header = () => {
             <div className="flex items-center gap-x-6 lg:gap-x-4 2xl:gap-x-5">
               <div className="hidden lg:flex items-center gap-2 xl:mr-3 h-10 px-[8px] xl:px-[14px] rounded-sm cursor-pointer text-[#B6B6B6] text-xs xl:text-sm border border-[#ECECEC] shadow-sm hover:shadow-md">
                 <IoLocationOutline />
-                <span className="text-greeny">Your Location</span>
-                <IoIosArrowDown />
+                {/* <span className="text-greeny">Your Location</span> */}
+                <SelectDrop data={countries} placeholder="Your Location" onSelect={handleLocationSelect} />
+                {/* <IoIosArrowDown /> */}
               </div>
               <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
