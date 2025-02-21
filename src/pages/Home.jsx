@@ -12,10 +12,10 @@ import TrendingProducts from "../components/TrendingProducts"
 const Home = () => {
   return (
     <>
-      <div className="max-w-[1610px] mx-auto lg:flex gap-x-3 pt-[30px] lg:px-12 xl:px-16 2xl:px-20">
+      {/* <div className="max-w-[1610px] mx-auto 2xl:flex gap-x-3 pt-[30px]">
         <Category />
-        <Hero />
-      </div>
+      </div> */}
+      <Hero />
       <PopularProducts />
       <DealsOfTheDay />
       <ShopByCategories />

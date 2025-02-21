@@ -72,7 +72,7 @@ const navList = [
     },
 ]
 
-const Navbar = () => {
+const Navbar = ({className}) => {
     const [openDropdown, setOpenDropdown] = useState(null);
     const dropdownRef = useRef(null);
 
@@ -93,7 +93,7 @@ const Navbar = () => {
     }, [openDropdown]);
 
     return (
-        <nav className="">
+        <nav className={`${className}`}>
             {/* Main Navigation */}
             <div className="max-w-[1600px] mx-auto flex justify-between items-center py-4 px-6">
                 <ul className="flex items-center gap-x-6 xl:gap-x-7 2xl:gap-x-[34px]">
@@ -123,7 +123,7 @@ const Navbar = () => {
                                             <li key={index}>
                                                 <NavLink
                                                     to={sub.url}
-                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-greeny hover:text-white transition-all duration-200"
+                                                    className="block px-4 py-2 text-sm text-gray-700 font-semibold hover:bg-greeny hover:text-white transition-all duration-200"
                                                     onClick={() => setOpenDropdown(null)} // Close on selection
                                                 >
                                                     {sub.name}

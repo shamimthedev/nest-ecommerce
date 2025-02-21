@@ -39,7 +39,7 @@ const Category = () => {
   ]
   return (
     <>
-      <section className="p-[31px] bg-white rounded-[15px] border border-[#ECECEC] hidden lg:block">
+      <section className="p-[31px] bg-white rounded-[15px] border border-[#ECECEC] hidden 2xl:block">
         <h2 className="font-bold text-2xl mb-[30px] pb-[17px] border-b border-[#ECECEC] relative after:absolute after:content-[''] after:w-[80px] after:h-[2px] after:bg-[#BCE3C9] after:bottom-0 after:left-0">Category</h2>
         <div className="flex flex-col gap-y-[15px]">
           {categoryData.map((category) => {

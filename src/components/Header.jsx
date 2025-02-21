@@ -187,7 +187,7 @@ const Header = () => {
             </div>
 
             {/* Navigation Links */}
-            <Navbar />
+            <Navbar className={'mr-auto'}/>
             <div className="hidden xl:flex items-center gap-x-2 2xl:gap-x-3">
               <img src={Support} alt="" className="w-5 2xl:w-8" />
               <div className="flex flex-col">
