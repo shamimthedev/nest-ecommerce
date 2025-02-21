@@ -8,42 +8,53 @@ import Cart from '/cart.svg'
 import Account from '/account.svg'
 import Support from '/support.svg'
 import SelectDrop from "./SelectDrop"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import axios from "axios"
 import { FiClipboard, FiHeart, FiSettings, FiTarget, FiUser } from "react-icons/fi"
 import { GoSignOut } from "react-icons/go"
 import Navbar from "./Navbar"
 
-const categories = ["All Categories",
-  "Milks and Dairies",
-  "Wines & Alcohol",
-  "Clothing & Beauty",
-  "Pet Foods & Toy",
-  "Fast food",
-  "Baking material",
-  "Vegetables",
-  "Fresh Seafood",
-  "Noodles & Rice",
-  "Ice cream",];
-
 const Header = () => {
   const [isAccOpen, setIsAccOpen] = useState(false)
+  const dropdownRef = useRef(null);
+
+  const categories = useMemo(() => [
+    "All Categories", "Milks and Dairies", "Wines & Alcohol",
+    "Clothing & Beauty", "Pet Foods & Toy", "Fast food",
+    "Baking material", "Vegetables", "Fresh Seafood",
+    "Noodles & Rice", "Ice cream"
+  ], []);
 
   const countryList = []
-  useEffect(() => { getCountry() }, [])
-  const getCountry = async () => {
-    try {
-      await axios.get('https://countriesnow.space/api/v0.1/countries/').then((res) => {
-        if (res !== null) {
-          res.data.data.map((item, index) => {
-            countryList.push(item.country)
-          })
-        }
-      })
-    } catch (err) {
-      console.log(err.message)
-    }
-  }
+  useEffect(() => {
+    const getCountry = async () => {
+      try {
+        await axios.get('https://countriesnow.space/api/v0.1/countries/').then((res) => {
+          if (res !== null) {
+            res.data.data.map((item, index) => {
+              countryList.push(item.country)
+            })
+          }
+        })
+      } catch (err) {
+        console.log("Error fetching countries:", err.message);
+      }
+    };
+
+    getCountry();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsAccOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -89,7 +100,7 @@ const Header = () => {
 
             {/* Logo here  */}
             <div className="w-[150px] 2xl:w-[180px]">
-              <img src={Logo} alt="Logo" className="w-full" />
+              <img src={Logo} loading="lazy" alt="Logo" className="w-full" />
             </div>
 
             {/* Search Bar */}
@@ -117,7 +128,7 @@ const Header = () => {
               </div>
               <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
-                  <img src={Compare} alt="Compare icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Compare} loading="lazy" alt="Compare icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-12px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     3
                   </span>
@@ -126,7 +137,7 @@ const Header = () => {
               </div>
               <div className="flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
-                  <img src={Wishlist} alt="Wishlist icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Wishlist} loading="lazy" alt="Wishlist icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-12px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     6
                   </span>
@@ -135,24 +146,26 @@ const Header = () => {
               </div>
               <div className="flex items-baseline gap-x-1 cursor-pointer">
                 <div className="relative">
-                  <img src={Cart} alt="Cart icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
+                  <img src={Cart} loading="lazy" alt="Cart icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                   <span className="absolute right-[-10px] top-[-12px] h-4 w-4 xl:w-5 xl:h-5 bg-greeny text-white rounded-full flex items-center justify-center font-lato font-medium text-[10px] xl:text-xs">
                     1
                   </span>
                 </div>
                 <span className="hidden lg:block font-lato text-[#7E7E7E] text-sm xl:text-base">Cart</span>
               </div>
-              <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer relative" onClick={() => setIsAccOpen(!isAccOpen)}>
-                <img src={Account} alt="Account icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
-                <span className="font-lato text-[#7E7E7E] text-sm xl:text-base">Account</span>
-                {isAccOpen && <ul className="absolute right-0 top-[150%] rounded-[10px] px-5 py-7 bg-white shadow-lg border border-[#ECECEC] min-w-[220px] h-auto z-50 mt-2 flex flex-col gap-y-2">
+              <div ref={dropdownRef} className="relative">
+                <div onClick={() => setIsAccOpen(!isAccOpen)} className="cursor-pointer flex items-baseline gap-1">
+                  <img src={Account} alt="Account icon" className="w-[20px] h-[18px]" />
+                  <span className="font-lato text-[#7E7E7E] text-sm">Account</span>
+                </div>
+                {isAccOpen && (<ul className="absolute right-0 top-[150%] rounded-[10px] px-5 py-7 bg-white shadow-lg border border-[#ECECEC] min-w-[220px] h-auto z-50 mt-2 flex flex-col gap-y-2">
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><FiUser /><span>My Account</span></li>
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><FiTarget /><span>Order Tracking</span></li>
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><FiClipboard /><span>My Voucher</span></li>
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><FiHeart /><span>My Wishlist</span></li>
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><FiSettings /><span>Setting</span></li>
                   <li className="flex items-center text-sm gap-x-3 rounded-md cursor-pointer hover:bg-greeny hover:text-white p-2"><GoSignOut /><span>Sign out</span></li>
-                </ul>}
+                </ul>)}
               </div>
             </div>
           </div>
@@ -162,22 +175,19 @@ const Header = () => {
       {/* Category with Menu Section  */}
       <div id="header-bottom" className="hidden lg:block border-y border-[#ECECEC]">
         <div className="max-w-[1610px] mx-auto">
-          <div className="h-[73px] py-[15px] flex items-center justify-between gap-x-5 2xl:gap-x-[35px] lg:px-12 xl:px-16 2xl:px-20">
-            <div className="flex items-center gap-x-6 xl:gap-x-7 2xl:gap-x-[35px]">
-
-              {/* Browse Categories Button */}
-              <div
-                className="flex gap-x-1 xl:gap-x-2 py-2 xl:py-3 px-2 xl:px-3 2xl:px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer text-xs xl:text-sm 2xl:text-base"
-                aria-label="Browse All Categories"
-              >
-                <img src={Browse} alt="Browse icon" className="w-3 xl:w-4" />
-                <span>Browse All Categories</span>
-                <IoIosArrowDown />
-              </div>
-
-              {/* Navigation Links */}
-              <Navbar/>
+          <div className="h-[73px] py-[15px] flex items-center justify-between gap-x-5 2xl:gap-x-[35px] lg:px-12 xl:px-16 2xl:px-20 relative">
+            {/* Browse Categories Button */}
+            <div
+              className="flex gap-x-1 xl:gap-x-2 py-2 xl:py-3 px-2 xl:px-3 2xl:px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer text-xs xl:text-sm 2xl:text-base"
+              aria-label="Browse All Categories"
+            >
+              <img src={Browse} loading="lazy" alt="Browse icon" className="w-3 xl:w-4" />
+              <span>Browse All Categories</span>
+              <IoIosArrowDown />
             </div>
+
+            {/* Navigation Links */}
+            <Navbar />
             <div className="hidden xl:flex items-center gap-x-2 2xl:gap-x-3">
               <img src={Support} alt="" className="w-5 2xl:w-8" />
               <div className="flex flex-col">
