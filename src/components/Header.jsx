@@ -6,15 +6,13 @@ import Compare from '/compare.svg'
 import Wishlist from '/wishlist.svg'
 import Cart from '/cart.svg'
 import Account from '/account.svg'
-import Deals from '/deals.svg'
-import Arrow from '/down-arrow.svg'
 import Support from '/support.svg'
-import { Link, NavLink } from "react-router"
 import SelectDrop from "./SelectDrop"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { FiClipboard, FiHeart, FiSettings, FiTarget, FiUser } from "react-icons/fi"
 import { GoSignOut } from "react-icons/go"
+import Navbar from "./Navbar"
 
 const categories = ["All Categories",
   "Milks and Dairies",
@@ -30,54 +28,6 @@ const categories = ["All Categories",
 
 const Header = () => {
   const [isAccOpen, setIsAccOpen] = useState(false)
-  const navList = [
-    {
-      id: 1,
-      name: 'Home',
-      url: '/',
-      img: Arrow
-    },
-    {
-      id: 2,
-      name: 'About',
-      url: '/about'
-    },
-    {
-      id: 3,
-      name: 'Shop',
-      url: '/shop',
-      img: Arrow
-    },
-    {
-      id: 4,
-      name: 'Vendors',
-      url: '/vendors',
-      img: Arrow
-    },
-    {
-      id: 5,
-      name: 'Mega Menu',
-      url: '/mega-menu',
-      img: Arrow
-    },
-    {
-      id: 6,
-      name: 'Blog',
-      url: '/blog',
-      img: Arrow
-    },
-    {
-      id: 7,
-      name: 'Pages',
-      url: '/pages',
-      img: Arrow
-    },
-    {
-      id: 8,
-      name: 'Contact',
-      url: '/contact'
-    },
-  ]
 
   const countryList = []
   useEffect(() => { getCountry() }, [])
@@ -192,7 +142,7 @@ const Header = () => {
                 </div>
                 <span className="hidden lg:block font-lato text-[#7E7E7E] text-sm xl:text-base">Cart</span>
               </div>
-              <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer relative" onClick={()=>setIsAccOpen(!isAccOpen)}>
+              <div className="hidden lg:flex items-baseline gap-x-1 cursor-pointer relative" onClick={() => setIsAccOpen(!isAccOpen)}>
                 <img src={Account} alt="Account icon" className="w-[20px] h-[18px] 2xl:w-[25px] 2xl:h-[25px]" />
                 <span className="font-lato text-[#7E7E7E] text-sm xl:text-base">Account</span>
                 {isAccOpen && <ul className="absolute right-0 top-[150%] rounded-[10px] px-5 py-7 bg-white shadow-lg border border-[#ECECEC] min-w-[220px] h-auto z-50 mt-2 flex flex-col gap-y-2">
@@ -214,23 +164,19 @@ const Header = () => {
         <div className="max-w-[1610px] mx-auto">
           <div className="h-[73px] py-[15px] flex items-center justify-between gap-x-5 2xl:gap-x-[35px] lg:px-12 xl:px-16 2xl:px-20">
             <div className="flex items-center gap-x-6 xl:gap-x-7 2xl:gap-x-[35px]">
-              <div className="flex gap-x-1 xl:gap-x-2 py-2 xl:py-3 px-2 xl:px-3 2xl:px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer text-xs xl:text-sm 2xl:text-base">
+
+              {/* Browse Categories Button */}
+              <div
+                className="flex gap-x-1 xl:gap-x-2 py-2 xl:py-3 px-2 xl:px-3 2xl:px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer text-xs xl:text-sm 2xl:text-base"
+                aria-label="Browse All Categories"
+              >
                 <img src={Browse} alt="Browse icon" className="w-3 xl:w-4" />
                 <span>Browse All Categories</span>
                 <IoIosArrowDown />
               </div>
-              <div className="flex gap-x-7 xl:gap-x-8 2xl:gap-x-10">
-                <Link className='flex gap-x-2 items-center font-bold text-xs xl:text-sm 2xl:text-base' to='/'> <img className="w-3 xl:w-4 2xl:w-5" src={Deals} alt="" />Deals</Link>
-                <ul className="flex items-center gap-x-6 xl:gap-x-7 2xl:gap-x-[34px]">
-                  {navList.map((nav) => {
-                    return (
-                      <li key={nav.id}><NavLink className='flex gap-x-1 items-center font-bold text-xs xl:text-sm 2xl:text-base' to={nav.url} style={({ isActive }) => ({
-                        color: isActive ? "#3BB77E" : "#253D4E",
-                      })}>{nav.name} <img src={nav.img} className="w-2" /></NavLink></li>
-                    )
-                  })}
-                </ul>
-              </div>
+
+              {/* Navigation Links */}
+              <Navbar/>
             </div>
             <div className="hidden xl:flex items-center gap-x-2 2xl:gap-x-3">
               <img src={Support} alt="" className="w-5 2xl:w-8" />
