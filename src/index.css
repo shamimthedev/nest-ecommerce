@@ -4,7 +4,16 @@
   --font-lato: "Lato", sans-serif;
   --color-greeny: #3BB77E;
   --shadow-3xl: 5px 5px 15px 0 rgba(0, 0, 0, 0.25);
+
+
+  /* --breakpoint-xs: '480px',  
+  --breakpoint-sm: '640px',
+  --breakpoint-md: '768px',
+  --breakpoint-lg: '1024px',
+  --breakpoint-xl: '1280px',
+  --breakpoint-2xl: '1536px', */
 }
+
 body {
   font-family: "Quicksand", sans-serif;
   color: #253D4E;
@@ -27,4 +36,23 @@ body {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #b3b3b3;
   }
+}
+
+/* slick-slider dots customization  */
+.slick-dots {
+  bottom: 50px !important;
+  z-index: 10;
+}
+.slick-dots li{
+  border: 1px solid #253D4E;
+  height: 15px !important;
+  width:  15px !important;
+  border-radius: 50%;
+}
+.slick-dots li:hover{
+  background-color: rgba(59, 183, 125, 0.45);
+}
+.slick-dots li.slick-active{
+  background-color: #3BB77E;
+  border: 3px solid #3BB77E;
 }

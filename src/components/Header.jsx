@@ -61,7 +61,7 @@ const Header = () => {
       {/* Top Header  */}
       <div id="topSection" className="hidden lg:block border-b border-[#ECECEC] font-lato">
         <div className="max-w-[1610px] mx-auto">
-          <div className="h-[37px] flex justify-between items-center text-[#7E7E7E] text-[13px] leading-[13px] lg:px-12 xl:px-16 2xl:px-20">
+          <div className="h-[37px] flex justify-between items-center text-[#7E7E7E] text-[13px] leading-[13px]">
             <ul className="flex gap-3 xl:gap-5 font-medium">
               <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">About Us</li>
               <li className="relative after:absolute after:content-[''] after:bg-[#DEDFE2] after:w-[1px] after:h-[100%] after:right-[-7px] xl:after:right-[-10px]">My Account</li>
@@ -90,7 +90,7 @@ const Header = () => {
 
       {/* Logo with Search */}
       <div id="middleSection">
-        <div className="max-w-[1610px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="max-w-[1610px] mx-auto ">
           <div className="flex justify-between items-center gap-x-10 2xl:gap-x-11 lg:h-[96px] h-[70px]">
 
             {/* Mobile Menu  */}
@@ -175,7 +175,7 @@ const Header = () => {
       {/* Category with Menu Section  */}
       <div id="header-bottom" className="hidden lg:block border-y border-[#ECECEC]">
         <div className="max-w-[1610px] mx-auto">
-          <div className="h-[73px] py-[15px] flex items-center justify-between gap-x-5 2xl:gap-x-[35px] lg:px-12 xl:px-16 2xl:px-20 relative">
+          <div className="h-[73px] py-[15px] flex items-center justify-between gap-x-5 2xl:gap-x-[35px] relative">
             {/* Browse Categories Button */}
             <div
               className="flex gap-x-1 xl:gap-x-2 py-2 xl:py-3 px-2 xl:px-3 2xl:px-5 font-bold bg-greeny rounded-[5px] text-white items-center cursor-pointer text-xs xl:text-sm 2xl:text-base"
